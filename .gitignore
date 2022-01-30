@@ -1,3 +1,10 @@
 bin/**
 include/**
 lib/**
+
+.DS_Store
+*.xml
+*.rels
+*.docx
+*.png
+*.wmf
