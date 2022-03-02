@@ -1,10 +1,23 @@
 #!/bin/bash
 
+expanded=false
+
 expandDocx()
 {
     # Check if $1 has a directory $1.dir, if not unzip it to $1.dir
     if [ ! -d $1.dir ]; then
         unzip -q $1 -d $1.dir
+        expanded=true
+    fi
+}
+
+unexpandDocx()
+{
+    if [ $expanded==true ]; then
+        cd $1.dir > /dev/null
+        zip -q -r ../../$1a.docx ./*
+        cd - > /dev/null
+        rm -r $1.dir
     fi
 }
 
@@ -46,3 +59,4 @@ fi
 
 expandDocx $1
 getIndex $1
+unexpandDocx $1
